@@ -1,0 +1,61 @@
+Arguments: 
+  /home/mauri/.nvm/versions/node/v12.14.0/bin/node /home/mauri/.nvm/versions/node/v12.14.0/bin/yarn add express-local --save
+
+PATH: 
+  /home/mauri/.nvm/versions/node/v12.14.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+
+Yarn version: 
+  1.21.1
+
+Node version: 
+  12.14.0
+
+Platform: 
+  linux x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/express-local: Not found
+      at Request.params.callback [as _callback] (/home/mauri/.nvm/versions/node/v12.14.0/lib/node_modules/yarn/lib/cli.js:66947:18)
+      at Request.self.callback (/home/mauri/.nvm/versions/node/v12.14.0/lib/node_modules/yarn/lib/cli.js:140665:22)
+      at Request.emit (events.js:210:5)
+      at Request.<anonymous> (/home/mauri/.nvm/versions/node/v12.14.0/lib/node_modules/yarn/lib/cli.js:141637:10)
+      at Request.emit (events.js:210:5)
+      at IncomingMessage.<anonymous> (/home/mauri/.nvm/versions/node/v12.14.0/lib/node_modules/yarn/lib/cli.js:141559:12)
+      at Object.onceWrapper (events.js:299:28)
+      at IncomingMessage.emit (events.js:215:7)
+      at endReadableNT (_stream_readable.js:1184:12)
+      at processTicksAndRejections (internal/process/task_queues.js:80:21)
+
+npm manifest: 
+  {
+    "name": "empresas-backend",
+    "version": "1.0.0",
+    "description": "Estes documento README tem como objetivo fornecer as informações necessárias para realização do projeto Empresas.",
+    "main": "app",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://bitbucket.org/ioasys/empresas-backend.git"
+    },
+    "author": "Mauri Moura",
+    "license": "ISC",
+    "homepage": "https://bitbucket.org/ioasys/empresas-backend#readme",
+    "dependencies": {
+      "body-parser": "^1.19.0",
+      "express": "^4.17.1",
+      "mysql2": "^2.1.0",
+      "sequelize": "^5.21.3"
+    },
+    "devDependencies": {
+      "nodemon": "^2.0.2",
+      "sequelize-cli": "^5.5.1"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
