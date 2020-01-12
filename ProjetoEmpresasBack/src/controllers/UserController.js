@@ -1,12 +1,13 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 
-const Enterprise = require('../models/EnterpriseModel');
+const User = require('../models/UserModel');
 
 module.exports = {
     async index(req, res) {
         try {
-            const enterprises = await Enterprise.findAll();
-            return res.status(200).json(enterprises);
+            const users = await User.findAll();
+            return res.status(200).json(users);
         } catch (e) {
             return res.status(400).send({ error: e });
         }
@@ -14,14 +15,14 @@ module.exports = {
 
     async store(req, res) {
         try {
-            const { name, description, contry, type } = req.body;
-            const enterprise = await Enterprise.create({
+            const { name, email, password } = req.body;
+            const user = await User.create({
                 name,
-                description,
+                email,
                 contry,
                 type
             });
-            return res.json(enterprise).status(201).send(enterprise);
+            return res.json(user), res.status(201).send(user);
         } catch (e) {
             return res.status(400).send({ error: e });
         }

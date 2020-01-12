@@ -1,8 +1,9 @@
 const sequelize = require('sequelize');
+const axios = require('axios');
 const bcrypt = require('bcryptjs');
 
 module.exports = (sequelize, DataTypes) => {
-    
+
     const User = sequelize.define('User', {
         id: {
             autoIncrement: true,
@@ -22,25 +23,26 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             validate: {
                 notEmpty: true,
-                isEmail:{
+                isEmail: {
                     msg: "Este campo precisa ser um e-mail"
                 },
             },
-            lowercase:true,
+            lowercase: true,
         },
         password: {
             type: DataTypes.STRING,
             allowNull: false,
             select: false,
-            validate:{
+            validate: {
                 notEmpty: true,
                 msg: "Este campo não pode ser vazio"
             }
         },
     });
 
-    User.pre('save', function(next){
-        const hash = await bcrypt.hash(this.password, 10);
+    User.pre('save', function(next) {
+
+        // const hash = await bcrypt.hash(this.password, 10);
         this.password = hash;
         next();
     })

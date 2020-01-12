@@ -1,7 +1,11 @@
-module.exports = {
-    username: 'root',
-    password: '210818',
-    database: 'empresas',
-    host: 'localhost',
-    dialect: 'mysql',
-  }
+const Sequelize = require('sequelize');
+const dbConfig = require('../config/db');
+const EnterPriseModel = require('../models/EnterpriseModel');
+const UserModel = require('../models/UserModel');
+
+const connection = new Sequelize(dbConfig);
+
+EnterPriseModel.init(connection);
+UserModel.init(connection);
+
+module.exports = connection;
