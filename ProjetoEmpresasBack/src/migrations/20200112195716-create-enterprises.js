@@ -19,6 +19,10 @@ module.exports = {
             },
             type: {
                 allowNull: false,
+                type: DataTypes.INTEGER,
+            },
+            description_type: {
+                allowNull: false,
                 type: DataTypes.STRING,
             },
             contry: {

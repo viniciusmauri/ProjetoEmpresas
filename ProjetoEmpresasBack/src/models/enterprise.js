@@ -10,7 +10,8 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING,
     description: DataTypes.TEXT,
     contry: DataTypes.STRING,
-    type: DataTypes.STRING,
+    type: DataTypes.INTEGER,
+    descriptionType: DataTypes.STRING,
     createdAt: {
       type: DataTypes.DATE,
       field: "created_at"

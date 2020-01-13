@@ -2,6 +2,13 @@ const router = require('express').Router();
 const { enterprisesController } = require('../controllers');
 
 const enterprises = [];
+//let findEnterprisesByNameAndType = function ({ name, type }, callback){
+//  if(!enterprises[name, type]){
+//    return callback(new Error(
+//      'Empresa não encontrada' + ({name, type}) )
+//    );
+//  }
+//}
 
 router.get('/', enterprisesController.index);
 router.post('/', enterprisesController.store);
@@ -25,5 +32,6 @@ router.get('/enterprises/:id', (req, res) => {
     res.json(getEnterprise);
   }
 });
+
 
 module.exports = router;
