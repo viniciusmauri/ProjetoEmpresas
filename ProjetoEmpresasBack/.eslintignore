@@ -1,0 +1,7 @@
+tests
+node_modules
+config
+models
+migrations
+seeders
+assets/data

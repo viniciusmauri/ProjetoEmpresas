@@ -1,0 +1,28 @@
+{
+  "development": {
+    "database": "empresas",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "username": "postgres",
+    "password": "210818",
+    "quoteIdentifiers": false
+  },
+  "test": {
+    "database": "empresas",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "username": "postgres"
+  },
+  "staging": {
+    "database": "empresas",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "username": "postgres"
+  },
+  "production": {
+    "database": "empresas",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "username": "postgres"
+  }
+}
