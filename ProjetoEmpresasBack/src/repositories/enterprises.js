@@ -1,12 +1,16 @@
 const { Enterprise } = require('../models');
 
 module.exports = {
-  list() {
-    return Enterprise.findAll();
+  list(args) {
+    return Enterprise.findAll(args);
   },
 
   getById(id) {
     return Enterprise.findByPk(id);
+  },
+
+  filter(args) {
+    return Enterprise.findAll(args);
   },
 
   get(args) {

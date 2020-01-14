@@ -2,14 +2,20 @@ const { enterprisesRepository } = require('../../repositories');
 const {
   errorHandler: ApplicationError,
 } = require('../../helpers');
+const { paginate } = require('../../helpers');
 
 module.exports = {
-  list: async () => {
+  list: async ({ args = {}, page, pageSize }) => {
     try {
-      const enterprises = await enterprisesRepository.list();
+      const enterprises = await enterprisesRepository.list(
+        paginate(
+          { where: { ...args } },
+          { page, pageSize },
+        ),
+      );
 
       if (!enterprises) {
-        throw new ApplicationError('Usuário não encontrado', 404);
+        throw new ApplicationError('Empresa não encontrada', 404);
       }
 
       return enterprises;

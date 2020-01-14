@@ -17,13 +17,12 @@ module.exports = {
                 allowNull: false,
                 type: DataTypes.TEXT,
             },
-            type: {
-                allowNull: false,
-                type: DataTypes.INTEGER,
-            },
-            description_type: {
-                allowNull: false,
-                type: DataTypes.STRING,
+            enterprise_types: {
+                type: DataTypes.ENUM,
+                values: ['sports', 'games',
+                    'technology', 'clothing', 'beauty',
+                    'cheers', 'foods-drinks', 'Pet', 'automobiles',
+                    'toy'],
             },
             contry: {
                 allowNull: false,

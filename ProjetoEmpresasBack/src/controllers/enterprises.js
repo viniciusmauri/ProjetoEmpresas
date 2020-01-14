@@ -2,9 +2,14 @@ const { enterprisesService } = require('../services');
 
 module.exports = {
   async index(req, res) {
+    const {
+      page, pageSize,
+    } = req.query;
     try {
-      const users = await enterprisesService.list();
-      return res.status(200).json(users);
+      const enterprises = await enterprisesService.list({
+        page, pageSize,
+      });
+      return res.status(200).json(enterprises);
     } catch (e) {
       console.error(e);
       res.status(e.status || 500).json({
@@ -13,6 +18,26 @@ module.exports = {
       });
     }
     return this.index;
+  },
+
+  async getByNameOrType(req, res) {
+    const {
+      // eslint-disable-next-line camelcase
+      name, enterprise_types,
+    } = req.query;
+    try {
+      const enterprises = await enterprisesService.filter({
+        name, enterprise_types,
+      });
+      return res.status(200).json(enterprises);
+    } catch (e) {
+      console.error(e);
+      res.status(e.status || 500).json({
+        name: e.name,
+        message: e.message,
+      });
+      return this.getByNameOrType;
+    }
   },
 
   create: async (req, res) => {

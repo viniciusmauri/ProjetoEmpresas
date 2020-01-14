@@ -10,8 +10,13 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING,
     description: DataTypes.TEXT,
     contry: DataTypes.STRING,
-    type: DataTypes.INTEGER,
-    descriptionType: DataTypes.STRING,
+    enterprise_types: {
+      type: DataTypes.ENUM,
+      values: ['sports', 'games',
+        'technology', 'clothing', 'beauty',
+        'cheers', 'foods-drinks', 'Pet', 'automobiles',
+        'toy'],
+    },
     createdAt: {
       type: DataTypes.DATE,
       field: "created_at"

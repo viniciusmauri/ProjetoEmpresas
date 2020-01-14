@@ -1,5 +1,5 @@
 const { usersRepository } = require('../../repositories');
-const { errorHandler: ApplicationError, encryptor, } = require('../../helpers');
+const { errorHandler: ApplicationError, encryptor } = require('../../helpers');
 
 module.exports = {
   authenticate: async (email, password) => {
