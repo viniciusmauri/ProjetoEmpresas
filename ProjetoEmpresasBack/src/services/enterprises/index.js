@@ -1,7 +1,13 @@
 const { list } = require('./list');
-const { filter } = require('./filter');
+const { getById } = require('./get');
+const { update } = require('./update');
+const { destroy } = require('./delete');
+const { create } = require('./create');
 
 module.exports = {
   list,
-  filter,
+  getById,
+  update,
+  destroy,
+  create,
 };

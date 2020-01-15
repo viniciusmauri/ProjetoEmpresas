@@ -1,60 +1,7 @@
 const { enterprisesService } = require('../services');
 
 module.exports = {
-  async index(req, res) {
-    const {
-      page, pageSize,
-    } = req.query;
-    try {
-      const enterprises = await enterprisesService.list({
-        page, pageSize,
-      });
-      return res.status(200).json(enterprises);
-    } catch (e) {
-      console.error(e);
-      res.status(e.status || 500).json({
-        name: e.name,
-        message: e.message,
-      });
-    }
-    return this.index;
-  },
-
-  async getByNameOrType(req, res) {
-    const {
-      // eslint-disable-next-line camelcase
-      name, enterprise_types,
-    } = req.query;
-    try {
-      const enterprises = await enterprisesService.filter({
-        name, enterprise_types,
-      });
-      return res.status(200).json(enterprises);
-    } catch (e) {
-      console.error(e);
-      res.status(e.status || 500).json({
-        name: e.name,
-        message: e.message,
-      });
-      return this.getByNameOrType;
-    }
-  },
-
-  create: async (req, res) => {
-    try {
-      const params = req.body;
-      const response = await enterprisesService.create(params);
-      res.status(200).json(response);
-    } catch (e) {
-      console.error(e);
-      res.status(e.status || 500).json({
-        name: e.name,
-        message: e.message,
-      });
-    }
-  },
-
-  async store(req, res) {
+  async create(req, res) {
     try {
       const {
         name, description, contry, type,
@@ -70,4 +17,78 @@ module.exports = {
       return res.status(400).send({ error: e });
     }
   },
+
+  async index(req, res) {
+    const {
+      name, enterpriseTypes,
+    } = req.query;
+
+    try {
+      const { page, pageSize } = req.query;
+      const enterprises = await enterprisesService.list({
+        name,
+        enterpriseTypes,
+        page,
+        pageSize,
+      });
+      return res.status(200).json(enterprises);
+    } catch (e) {
+      console.error(e);
+      return res.status(e.status || 500).json({
+        name: e.name,
+        message: e.message,
+      });
+    }
+  },
+
+  async getById(req, res) {
+    const { id } = req.params;
+
+    try {
+      const enterprise = await enterprisesService.getById(id);
+      res.status(200).json(enterprise);
+    } catch (e) {
+      console.error(e);
+      res.status(e.status || 500).json({
+        name: e.name,
+        message: e.message,
+      });
+    }
+  },
+
+  async destroy(req, res) {
+    const { id } = req.params;
+
+    try {
+      await enterprisesService.destroy(id);
+      res.status(200).end();
+    } catch (e) {
+      console.error(e);
+      res.status(e.status || 500).json({
+        name: e.name,
+        message: e.message,
+      });
+    }
+  },
+
+  async update(req, res) {
+    try {
+      const {
+        body,
+        params: { id },
+      } = req;
+
+      const enterprise = await enterprisesService.update(id, {
+        ...body,
+      });
+      res.status(200).json(enterprise);
+    } catch (e) {
+      console.error(e);
+      res.status(e.status || 500).json({
+        name: e.name,
+        message: e.message,
+      });
+    }
+  },
+
 };

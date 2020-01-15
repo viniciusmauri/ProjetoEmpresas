@@ -1,3 +1,4 @@
+const { Op } = require('sequelize');
 const { enterprisesRepository } = require('../../repositories');
 const {
   errorHandler: ApplicationError,
@@ -5,11 +6,41 @@ const {
 const { paginate } = require('../../helpers');
 
 module.exports = {
-  list: async ({ args = {}, page, pageSize }) => {
+  list: async ({
+    name = null, enterpriseTypes = null, page, pageSize,
+  }) => {
     try {
+      const args = [];
+
+      if (name) {
+        args.push({
+          [Op.or]: [
+            {
+              name: {
+                [Op.iLike]: `%${name}%`,
+              },
+            },
+          ],
+        });
+      }
+
+      if (enterpriseTypes) {
+        args.push({
+          [Op.or]: [
+            {
+              enterpriseTypes: {
+                [Op.eq]: `${enterpriseTypes}`,
+              },
+            },
+          ],
+        });
+      }
+
       const enterprises = await enterprisesRepository.list(
         paginate(
-          { where: { ...args } },
+          {
+            where: { [Op.and]: args },
+          },
           { page, pageSize },
         ),
       );

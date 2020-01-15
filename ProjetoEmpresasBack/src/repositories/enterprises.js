@@ -9,10 +9,6 @@ module.exports = {
     return Enterprise.findByPk(id);
   },
 
-  filter(args) {
-    return Enterprise.findAll(args);
-  },
-
   get(args) {
     return Enterprise.findOne({
       where: args,
@@ -29,7 +25,7 @@ module.exports = {
     return Enterprise.create(obj);
   },
 
-  delete(id) {
+  destroy(id) {
     return Enterprise.destroy({
       where: { id },
     });
