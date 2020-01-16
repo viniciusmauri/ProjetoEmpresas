@@ -5,7 +5,8 @@
     "dialect": "postgres",
     "username": "postgres",
     "password": "210818",
-    "quoteIdentifiers": false
+    "quoteIdentifiers": false,
+    "secret": "46dcb2915adaafa609da91528cba7c76"
   },
   "test": {
     "database": "empresas",

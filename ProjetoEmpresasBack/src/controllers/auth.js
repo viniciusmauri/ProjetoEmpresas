@@ -10,7 +10,7 @@ module.exports = {
       });
     } catch (e) {
       console.error(e);
-      res.status(e.status || 500).json({
+      res.status(e.status || 401).json({
         name: e.name,
         message: e.message,
       });

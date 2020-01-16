@@ -8,7 +8,6 @@ const verify = promisify(jwt.verify);
 
 module.exports = async (req, res, next) => {
   let token;
-
   try {
     if (req.headers && req.headers.authorization) {
       const parts = req.headers.authorization.split(' ');

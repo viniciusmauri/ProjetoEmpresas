@@ -1,15 +1,15 @@
 const { User } = require('../models');
 
 module.exports = {
-  list() {
-    return User.findAll();
+  list(args) {
+    return User.findAll(args);
   },
 
   getById(id) {
     return User.findByPk(id);
   },
 
-  get(args) {
+  findOne(args) {
     return User.findOne({
       where: args,
     });

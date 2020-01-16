@@ -1,26 +1,12 @@
 const { usersService } = require('../services');
 
 module.exports = {
-  async index(req, res) {
+  index: async (req, res) => {
     try {
       const users = await usersService.list();
-      return res.status(200).json(users);
+      res.status(200).json(users);
     } catch (e) {
-      console.error(e);
-      res.status(e.status || 500).json({
-        name: e.name,
-        message: e.message,
-      });
-    }
-    return this.index;
-  },
-  create: async (req, res) => {
-    try {
-      const { name, email, password } = req.body;
-      const response = await usersService.create({ name, email, password });
-      res.status(201).json(response);
-    } catch (e) {
-      console.error(e);
+      console.info(e);
       res.status(e.status || 500).json({
         name: e.name,
         message: e.message,
@@ -28,17 +14,41 @@ module.exports = {
     }
   },
 
-  async store(req, res) {
+  create: async (req, res) => {
+    const { email } = req.body;
     try {
-      const { name, email, password } = req.body;
-      const user = await usersService.create({
-        name,
-        email,
-        password,
-      });
-      return res.json(user).status(201).send(user);
+      if (await usersService.findOne({ email })) {
+        return res.status(400).json({ error: 'Usuário já cadastrado' });
+      }
+
+      const user = await usersService.create(req.body);
+
+      return res.json({ user });
     } catch (e) {
-      return res.status(400).send({ error: e });
+      return res.status(400).json({ error: 'Falha ao cadastrar usuário' });
+    }
+  },
+
+  authenticate: async (req, res) => {
+    try {
+      const { email, password } = req.body;
+
+      const user = await usersService.findOne({ email });
+
+      if (!user) {
+        return res.status(400).json({ error: 'Usuário não encontrado' });
+      }
+
+      if (!(await user.compareHash(password))) {
+        return res.statut(400).json({ error: 'Senha inválida' });
+      }
+
+      return res.json({
+        user,
+        token: user.generateToken(),
+      });
+    } catch (e) {
+      return res.status(400).json({ error: 'Falha ao autenticar o usuário' });
     }
   },
 };

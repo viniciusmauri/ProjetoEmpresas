@@ -1,7 +1,5 @@
 const { usersRepository } = require('../../repositories');
-const {
-  errorHandler: ApplicationError,
-} = require('../../helpers');
+const { errorHandler: ApplicationError } = require('../../helpers');
 
 module.exports = {
   list: async () => {
