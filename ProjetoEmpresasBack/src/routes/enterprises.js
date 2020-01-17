@@ -5,7 +5,7 @@ const { enterprisesController } = require('../controllers');
 router.get('/', enterprisesController.index);
 router.get('/:id', enterprisesController.getById);
 
-router.post('/', isAuthorized, enterprisesController.create);
+router.post('/', enterprisesController.create);
 router.post('/:id', enterprisesController.update);
 
 router.delete('/:id', enterprisesController.destroy);

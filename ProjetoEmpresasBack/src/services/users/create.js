@@ -1,5 +1,3 @@
-const slug = require('slug');
-
 const { usersRepository } = require('../../repositories');
 const {
   encryptor,
@@ -14,21 +12,18 @@ module.exports = {
         throw new ApplicationError('Usuário já cadastrado', 409);
       }
       const newUser = params;
+      console.info(params);
       newUser.password = encryptor.hashPassword(params.password);
 
       const user = await usersRepository.create(newUser);
-      const surveyUrl = slug(`${newUser.name} ${user.id}`, { lower: true });
-      await usersRepository.update(user.id, {
-        surveyUrl,
-      });
+      console.info(newUser);
 
       return {
         ...user.toJSON(),
-        surveyUrl,
       };
-    } catch (error) {
-      console.error(error);
-      throw error;
+    } catch (e) {
+      // console.error(e);
+      throw e;
     }
   },
 };

@@ -4,13 +4,10 @@ module.exports = {
   async create(req, res) {
     try {
       const {
-        name, description, contry, type,
-      } = req.body;
+        body,
+      } = req;
       const enterprise = await enterprisesService.create({
-        name,
-        description,
-        contry,
-        type,
+        ...body,
       });
       return res.json(enterprise).status(201).send(enterprise);
     } catch (e) {

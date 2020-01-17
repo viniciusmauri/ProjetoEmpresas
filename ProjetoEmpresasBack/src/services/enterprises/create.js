@@ -7,7 +7,7 @@ module.exports = {
         ...obj,
         enterpriseTypes: obj.enterpriseTypes.trim().toLowerCase(),
       };
-
+      console.info(obj);
       return enterprisesRepository.create(newEnterprise);
     } catch (e) {
       console.log(e);

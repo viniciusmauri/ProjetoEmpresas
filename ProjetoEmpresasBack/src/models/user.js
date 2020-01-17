@@ -10,19 +10,12 @@ module.exports = (sequelize, DataTypes) => {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        notEmpty: true,
-        msg: "Este campo precisa ser preenchido"
-      }
     },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
         notEmpty: true,
-        isEmail: {
-          msg: "Este campo precisa ser um e-mail"
-        },
       },
       lowercase: true,
     },
@@ -30,10 +23,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       select: false,
-      validate: {
-        notEmpty: true,
-        msg: "Este campo não pode ser vazio"
-      }
     },
     createdAt: {
       type: DataTypes.DATE,
@@ -45,11 +34,11 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
 
-  User.prototype,toJSON = function () {
+  User.prototype.toJSON = function () {
     const values = Object.assign({}, this.get());
     delete values.password;
     return values;
   }
 
   return User;
-}
+} 
