@@ -15,17 +15,30 @@ module.exports = {
   },
 
   create: async (req, res) => {
-    const { email } = req.body;
     try {
-      if (await usersService.findOne({ email })) {
-        return res.status(400).json({ error: 'Usuário já cadastrado' });
-      }
-
-      const user = await usersService.create(req.body);
-
-      return res.json({ user });
+      const params = req.body;
+      const resp = await usersService.create(params);
+      res.status(201).json(resp);
     } catch (e) {
-      return res.status(400).json({ error: 'Falha ao cadastrar usuário' });
+      res.status(e.status || 500).json({
+        name: e.name,
+        message: e.message,
+      });
+    }
+  },
+
+  get: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const resp = await usersService.get(id);
+
+      res.status(200).json(resp);
+    } catch (e) {
+      console.log(e);
+      res.status(e.status || 500).json({
+        name: e.name,
+        mesage: e.message,
+      });
     }
   },
 

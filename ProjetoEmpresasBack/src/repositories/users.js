@@ -9,7 +9,7 @@ module.exports = {
     return User.findByPk(id);
   },
 
-  findOne(args) {
+  get(args) {
     return User.findOne({
       where: args,
     });

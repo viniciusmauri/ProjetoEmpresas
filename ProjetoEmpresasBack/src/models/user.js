@@ -45,5 +45,11 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
 
+  User.prototype,toJSON = function () {
+    const values = Object.assign({}, this.get());
+    delete values.password;
+    return values;
+  }
+
   return User;
 }
