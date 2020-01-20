@@ -1,12 +1,12 @@
-const { usersRepository} = require('../../repositories');
-const { erroHandler: ApplicationError} = require('../../helpers');
+const { usersRepository } = require('../../repositories');
+const { erroHandler: ApplicationError } = require('../../helpers');
 
 module.exports = {
     getBy: async (param) => {
         try {
             const user = await usersRepository.get(param);
 
-            if(!user){
+            if (!user) {
                 throw new ApplicationError('Usuário não encontrado', 404);
             }
 

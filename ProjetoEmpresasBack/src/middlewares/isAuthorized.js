@@ -19,10 +19,12 @@ module.exports = async (req, res, next) => {
         if (/^Bearer$/i.test(scheme)) {
           token = credentials;
         } else {
+          console.info(token);
           throw new AppplicationError('wrong-authorization-format', 403);
         }
       }
     } else {
+      console.info(token);
       throw new AppplicationError('wrong-authorization-format', 403);
     }
 

@@ -5,7 +5,7 @@ module.exports = {
   authenticate: async (email, password) => {
     try {
       if (!email || !password) {
-        throw new ApplicationError('Email ou Senha faltando', 403);
+        throw new ApplicationError('Email ou senha faltando', 403);
       }
 
       const user = await usersRepository.get({ email });

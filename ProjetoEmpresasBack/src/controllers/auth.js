@@ -5,6 +5,7 @@ module.exports = {
     try {
       const { email, password } = req.body;
       const auth = await authenticate(email, password);
+      console.log(auth);
       req.status(200).json({
         auth,
       });
